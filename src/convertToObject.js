@@ -17,18 +17,22 @@ function convertToObject(sourceString) {
         return null;
       }
 
-      const prop = decl.slice(0, i).trim().toLowerCase();
+      const prop = decl.slice(0, i).trim();
 
       const rawVal = decl.slice(i + 1);
       const value = rawVal.replace(/^\s+/, '').replace(/\s+$/, '');
 
+      if (!prop || !value) {
+        return null;
+      }
+
       return [prop, value];
     })
     .filter(Boolean)
-    .reduce((obj, [prop, value]) => {
-      obj[prop] = value;
+    .reduce((stylesObject, [prop, value]) => {
+      stylesObject[prop] = value;
 
-      return obj;
+      return stylesObject;
     }, {});
 }
 

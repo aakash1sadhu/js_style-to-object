@@ -24,9 +24,9 @@ function convertToObject(sourceString) {
 
       if (!prop || !value) {
         return null;
+      } else {
+        return [prop, value];
       }
-
-      return [prop, value];
     })
     .filter(Boolean)
     .reduce((stylesObject, [prop, value]) => {
